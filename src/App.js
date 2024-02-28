@@ -8,6 +8,7 @@ import Main from './page/Main.js';
 import styled from 'styled-components';
 import ListPage from './page/ListPage.js';
 import requests from './api/request.js';
+import DetailPage from './component/DetailModal.js';
 
 const Layout = () => {
     return (

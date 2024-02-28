@@ -3,7 +3,7 @@ import MainBn from "../component/MainBn";
 import MovieRow from "../component/MovieRow";
 
 import requests from "../api/request";
-import MovieList from "../component/MovieList";
+import MovieList from "../component/DetailModal";
 
 const Main = () => {
 

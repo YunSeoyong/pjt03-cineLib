@@ -6,6 +6,7 @@ import { useDimensions } from "../utillhooks/useDimensions.tsx"
 import SearchModal from "./SearchModal.js";
 import Navigation from "./Navigation.js";
 import MenuToggle from "./MenuToggle.js";
+import { useNavigate } from "react-router";
 
 
 
@@ -14,6 +15,7 @@ const Header = () => {
     const [isMenu, toggleMenu] = useCycle(false, true);
     const navRef = useRef();
     const { height } = useDimensions(navRef);
+    const navigate = useNavigate();
 
     const showSearch = () => {
         setIsSearch(true);
@@ -44,7 +46,7 @@ const Header = () => {
     return (
         <HeaderWrap id="header">
             <div className="hd_in">
-                <h1 className="h_logo"><a href="../../public/index.html">CINE LIB</a></h1>
+                <h1 className="h_logo" onClick={() => {navigate('/')}}>CINE LIB</h1>
                 <div className="h_utill">
                     <ul>
                         <li className="h_search">
@@ -63,7 +65,7 @@ const Header = () => {
                         animate={isMenu ? "open" : "closed"}
                         variants={sidebar}
                     >
-                        <Navigation />
+                        <Navigation toggle={() => toggleMenu()} />
                     </Nav>
                     <MenuToggle isMenu={isMenu} toggle={() => toggleMenu()} />
                 </div>
@@ -91,17 +93,14 @@ const HeaderWrap = styled.header`
 
         .h_logo{
             margin-top: 27px;
-
-            a{
-                display: block;
-                width: 117px;
-                height: 23px;
-                background-image: url('/assets/logo01.svg');
-                background-position: left 0 center;
-                background-size: auto 100%;
-                background-repeat: no-repeat;
-                text-indent: -99999px;
-            }
+            width: 117px;
+            height: 23px;
+            background-image: url('/assets/logo01.svg');
+            background-position: left 0 center;
+            background-size: auto 100%;
+            background-repeat: no-repeat;
+            text-indent: -99999px;
+            cursor: pointer;
         }
 
         .h_utill{
@@ -155,7 +154,7 @@ const HeaderWrap = styled.header`
     }
     @media screen and (min-width:1024px) {
         .hd_in{
-            .h_logo a{
+            .h_logo {
                 width: 160px;
                 height: 28px;
             }

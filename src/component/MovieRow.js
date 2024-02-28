@@ -19,8 +19,12 @@ const MovieRow = ({
     const [movies, setMovies] = useState([]);
 
     const fetchMovies = useCallback (async () => {
-        const response = await axios.get(fetchUrl);
-        setMovies(response.data.results);
+        try{
+            const response = await axios.get(fetchUrl);
+            setMovies(response.data.results);
+        } catch(error){
+            console.error(error);
+        };
     }, [fetchUrl]);
     
     useEffect(() => {
@@ -35,11 +39,8 @@ const MovieRow = ({
                 className="slideWrap"
                 spaceBetween={14}
                 slidesPerView={3}
-                rewind={true}
                 modules={[Navigation]}
                 navigation
-                loop={true}
-                scrollbar={{draggable: true}}
                 breakpoints={{
                     720: {
                         spaceBetween: 20,
@@ -118,7 +119,7 @@ const MovieRowWrap = styled.section`
                 color: var(--main-color);
             }
             &:hover img{
-                scale: 1.1;
+                transform: scale(1.1);
             }
         }
     }
@@ -129,7 +130,7 @@ const MovieRowWrap = styled.section`
     .swiper-button-prev::after, .swiper-button-next::after{
         font-size: 32px;
     }
-    @media screen and (min-width:720px) {
+    @media screen and (min-width:720px){
         padding-left: 20px;
         margin-bottom: 70px;
 
@@ -161,8 +162,8 @@ const MovieRowWrap = styled.section`
             }
         }
     }
-    @media screen and (min-width:1440px) {
-        width: 1400px;
+    @media screen and (min-width:1480px) {
+        width: 1440px;
         margin: 0 auto 80px auto;
         padding: 0;
         h2{

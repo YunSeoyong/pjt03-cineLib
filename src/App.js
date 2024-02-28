@@ -1,3 +1,4 @@
+// App.js
 import { useRef, useState } from 'react';
 import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
 import './App.css';
@@ -50,12 +51,12 @@ function App() {
                     <Route path="/" element={<Layout />}>
                         <Route index element={<Main />} />
                         {LPList && LPList.map((it) => (
-                            <Route 
+                            <Route
+                                key={it.code} 
                                 path={it.path} 
                                 element={
                                     <ListPage 
                                         title={it.name}
-                                        id={it.code}
                                         fetchUrl={it.fetchUrl}
                                     />
                                 }

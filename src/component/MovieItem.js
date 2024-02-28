@@ -1,3 +1,4 @@
+// MovieItem.js
 import { useState } from "react";
 import styled from "styled-components";
 import { truncate } from "../utillhooks/truncate";

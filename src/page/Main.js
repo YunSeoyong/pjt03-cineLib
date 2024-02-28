@@ -21,5 +21,4 @@ export default Main;
 
 const MainWrap = styled.main`
     position: relative;
-    width: 100%;
 `;

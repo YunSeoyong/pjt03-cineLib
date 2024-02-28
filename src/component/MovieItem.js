@@ -6,7 +6,7 @@ import { truncate } from "../utillhooks/truncate";
 const MovieItem = ({ id, title, original_title, poster_path, release_date, vote_average, vote_count }) => {
 
     return (
-        <MovieLi>
+        <MovieLi key={id}>
             <div className="item_photo">
                 <img src={`https://image.tmdb.org/t/p/original/${poster_path}`} />
             </div>
@@ -82,5 +82,50 @@ const MovieLi = styled.li`
     }
     @media screen and (min-width:768px){
         width: 33.33%;
+        padding-left: 20px;
+        margin-bottom: 10vw;
+        
+        .item_photo{
+            height: 45vw;
+            margin-bottom: 2.4vw;
+        }
+        .item_text{
+            padding: 0 5px;
+            
+            h4{
+                margin-bottom: 1.5vw;
+            }
+        }
+    }
+    @media screen and (min-width:1024px){
+        width: 25%;
+        padding-left: 20px;
+        margin-bottom: 8vw;
+        
+        .item_photo{
+            height: 33vw;
+            margin-bottom: 1.5vw;
+        }
+        .item_text{
+            h4{
+                margin-bottom: 1.2vw;
+            }
+        }
+    }
+    @media screen and (min-width:1440px){
+        width: 20%;
+        padding: 0 15px;
+        margin-bottom: 100px;
+        
+        .item_photo{
+            height: 26vw;
+            max-height: 440px;
+            margin-bottom: 24px;
+        }
+        .item_text{
+            h4{
+                margin-bottom: 18px;
+            }
+        }
     }
 `;

@@ -62,12 +62,11 @@ const ListPage = ({ title, fetchUrl }) => {
         <Listpage>
             <div className="listpage_in">
                 <h2>{title}</h2>
-                <MovieContent>
+                <div className="itemList">
                     <ul>
-                        {movies &&
-                            movies.map((it) => <MovieItem key={it.id} {...it} />)}
+                        {movies && movies.map((it) => <MovieItem {...it} />)}
                     </ul>
-                </MovieContent>
+                </div>
                 <div
                     id="observer"
                     style={{ width: "100%", height: "10px", textAlign: "center" }}
@@ -89,14 +88,42 @@ const Listpage = styled.section`
             font-size: var(--font-lg);
             line-height: 1em;
             font-weight: 600;
-            margin: 0 0 30px 14px;
+            margin: 0 0 50px 14px;
+        }
+        .itemList ul{
+            display: flex;
+            flex-wrap: wrap;
+            padding-right: 14px;
         }
     }
-`;
-const MovieContent = styled.div`
-    ul {
-        display: flex;
-        flex-wrap: wrap;
-        padding-right: 14px;
+    @media screen and (min-width:768px){
+        .listpage_in{
+            h2{
+                margin: 0 0 60px 20px;
+            }
+            .itemList ul{
+                padding-right: 20px;
+            }
+        }
+    }
+    @media screen and (min-width:1024px){
+        .listpage_in{
+            h2{
+                margin: 0 0 80px 20px;
+            }
+        }
+    }
+    @media screen and (min-width:1480px){
+        width: 1470px;
+        margin: 0 auto;
+
+        .listpage_in{
+            h2{
+                margin: 0 0 80px 0;
+            }
+            .itemList ul{
+                padding-right: 0;
+            }
+        }
     }
 `;

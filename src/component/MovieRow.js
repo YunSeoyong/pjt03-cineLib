@@ -162,8 +162,8 @@ const MovieRowWrap = styled.section`
             }
         }
     }
-    @media screen and (min-width:1440px) {
-        width: 1400px;
+    @media screen and (min-width:1480px) {
+        width: 1440px;
         margin: 0 auto 80px auto;
         padding: 0;
         h2{

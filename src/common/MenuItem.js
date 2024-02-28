@@ -21,10 +21,10 @@ const MenuItem = ({ id, name }) => {
     return (
         <motion.li
             variants={variants}
-            whileHover={{ sclae: 1.1 }}
-            whileTap={{ sclae: 0.95 }}
+            whileHover={{ scale: 1.1, color: "var(--main-color)" }}
+            whileTap={{ scale: 0.95 }}
         >
-            {name}
+            <p>{name}</p>
         </motion.li>
     );
 };

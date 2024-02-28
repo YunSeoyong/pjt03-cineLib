@@ -15,7 +15,6 @@ const MainBn = () => {
 
     const fetchData = async () => {
         const response = await axios.get(requests.fetchNowPlaying);
-        console.log(response);
         const movieId = response.data.results[
             Math.floor(Math.random() * response.data.results.length)
         ].id;
@@ -24,7 +23,6 @@ const MainBn = () => {
         });
         setMovie(movieDetail);
     };
-    console.log(movie);
 
     return (
         <MainBnWrap
@@ -35,7 +33,7 @@ const MainBn = () => {
         >
             <BnContent>
                 <h2>{movie.title || movie.original_title || movie.name}</h2>
-                <div className="overview">{movie.overview && truncate(movie.overview, 100)}</div>
+                <div className="overview">{movie.overview && truncate(movie.overview, 200)}</div>
             </BnContent>
         </MainBnWrap>
     );
@@ -48,15 +46,22 @@ const MainBnWrap = styled.div`
     width: 100%;
     height: calc(100dvh - 80px);
     max-height: 960px;
+    margin-bottom: 60px;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center top;
+    @media screen and (min-width:768px){
+        margin-bottom: 80px;
+    }
+    @media screen and (min-width:1024px){
+        margin-bottom: 100px;
+    }
 `;
 const BnContent = styled.div`
     position: absolute;
     bottom: 15%;
     left: 0;
-    padding: 20px;
+    padding: 14px;
     
     h2{
         margin-bottom: 25px;
@@ -65,6 +70,17 @@ const BnContent = styled.div`
         line-height: 1.3em;
     }
     .overview{
-        font-size: var(--font-sm);
+        font-size: var(--font-con);
+    }
+    @media screen and (min-width:768px){
+        bottom: 20%;
+        padding: 20px;
+    }
+    @media screen and (min-width:1480px){
+        bottom: 15%;
+        padding: 60px;
+    }
+    @media screen and (min-width:1920px){
+        padding: 100px;
     }
 `;

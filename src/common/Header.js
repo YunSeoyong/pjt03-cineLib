@@ -24,19 +24,14 @@ const Header = () => {
 
     const sidebar = {
         open: () => ({
-            clipPath: `circle(${height * 2 + 200}px at 40px 40px)`,
-            x: 0,
-            opacity: 1,
+            transform: "translateX(0)",
             transition: {
-                type: "spring",
-                stiffness: 20,
-                restDelta: 2
+                type: "easeIn",
+                duration: 0.5
             }
         }),
         closed: {
-            clipPath: "circle(20px at 40px 40px)",
-            x: "100%",
-            opacity: 0,
+            transform: "translateX(100%)",
             transition: {
                 delay: 0.5,
                 type: "spring",
@@ -66,12 +61,11 @@ const Header = () => {
                         ref={navRef}
                         initial={false}
                         animate={isMenu ? "open" : "closed"}
-                        custom={height}
+                        variants={sidebar}
                     >
-                        <motion.div className="background" variants={sidebar} />
                         <Navigation />
                     </Nav>
-                    <MenuToggle toggle={() => toggleMenu()} />
+                    <MenuToggle isMenu={isMenu} toggle={() => toggleMenu()} />
                 </div>
             </div>
         </HeaderWrap>
@@ -93,7 +87,7 @@ const HeaderWrap = styled.header`
         position: relative;
         display: flex;
         justify-content: space-between;
-        margin: 0 12px;
+        margin: 0 14px;
 
         .h_logo{
             margin-top: 27px;
@@ -105,13 +99,14 @@ const HeaderWrap = styled.header`
                 background-image: url('/assets/logo01.svg');
                 background-position: left 0 center;
                 background-size: auto 100%;
+                background-repeat: no-repeat;
                 text-indent: -99999px;
             }
         }
 
         .h_utill{
             margin-top: 27px;
-            padding-right: 64px;
+            padding-right: 58px;
 
             & > ul{
                 display: flex;
@@ -158,11 +153,11 @@ const HeaderWrap = styled.header`
             }
         }
     }
-    @media screen and (min-width:1280px) {
+    @media screen and (min-width:1024px) {
         .hd_in{
             .h_logo a{
-                width: 180px;
-                height: 35px;
+                width: 160px;
+                height: 28px;
             }
         }
     }
@@ -181,22 +176,14 @@ const Nav = styled(motion.nav)`
     width: 70%;
     height: 100dvh;
     z-index: 500;
+    background-color: var(--dark-color);
     overflow: hidden;
-    
-    .background{
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: var(--dark-color);
-    }
 
     ul{
-        padding: 25px;
+        padding: 30px;
         position: absolute;
         top: 120px;
-        left: 30px;
+        left: 0;
     }
     li{
         margin-bottom: 2.4vw;
@@ -204,5 +191,23 @@ const Nav = styled(motion.nav)`
         font-size: var(--font-lg);
         line-height: 1.3em;
         font-weight: 700;
+    }
+    @media screen and (min-width:768px){
+        ul{
+            left: 30px;
+            padding: 50px;
+        }
+    }
+    @media screen and (min-width:1024px){
+        width: 40%;
+        ul{
+            left: 20px;
+            padding: 50px;
+        }
+    }
+    @media screen and (min-width:1480px){
+        ul{
+            left: 30px;
+        }
     }
 `;

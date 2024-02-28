@@ -10,11 +10,12 @@ const variants = {
     }
 };
 
-const Navigation = () => {
+const Navigation = ({toggle}) => {
+
     return (
         <motion.ul variants={variants}>
             {items.map(i => (
-                <MenuItem key={i.id} {...i} />
+                <MenuItem key={i.id} {...i} toggle={toggle} />
             ))}
         </motion.ul>
     );
@@ -26,17 +27,21 @@ const items = [
     {
         id: 0,
         name: "NOW PLAYING",
+        path: "/nowplaying"
     },
     {
         id: 1,
         name: "TOP RATED",
+        path: "/toprated"
     },
     {
         id: 2,
         name: "UPCOMING",
+        path: "/upcoming"
     },
     {
         id: 3,
         name: "GENRES",
+        path: "/genres"
     },
 ]

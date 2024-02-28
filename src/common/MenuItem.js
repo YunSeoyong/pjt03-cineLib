@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router";
 
 const variants = {
     open: {
@@ -17,12 +18,21 @@ const variants = {
     }
 };
 
-const MenuItem = ({ id, name }) => {
+const MenuItem = ({ id, name, path, toggle }) => {
+    const navigate = useNavigate();
+    const clickToggle = toggle
+
+    const clickItem = () => {
+        navigate(path);
+        clickToggle();
+    };
+
     return (
         <motion.li
             variants={variants}
             whileHover={{ scale: 1.1, color: "var(--main-color)" }}
             whileTap={{ scale: 0.95 }}
+            onClick={() => {clickItem()}}
         >
             <p>{name}</p>
         </motion.li>

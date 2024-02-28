@@ -13,7 +13,7 @@ const Main = () => {
             <MainBn />
             <MovieRow title="Upcoming" id="UC" fetchUrl={requests.fetchUpcoming} />
             <MovieRow title="Top Rated" id="TR" fetchUrl={requests.fetchTopRated} />
-            <MovieList title="Now Playing" id="NP" fetchUrl={requests.fetchNowPlaying} />
+            <MovieRow title="Now Playing" id="NP" fetchUrl={requests.fetchNowPlaying} />
         </MainWrap>
     );
 };
@@ -22,5 +22,4 @@ export default Main;
 const MainWrap = styled.main`
     position: relative;
     width: 100%;
-    padding-top: 80px;
 `;

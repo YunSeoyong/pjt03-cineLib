@@ -38,7 +38,6 @@ const MovieRow = ({
                 rewind={true}
                 modules={[Navigation]}
                 navigation
-                loop={true}
                 scrollbar={{draggable: true}}
                 breakpoints={{
                     720: {
@@ -118,7 +117,7 @@ const MovieRowWrap = styled.section`
                 color: var(--main-color);
             }
             &:hover img{
-                scale: 1.1;
+                transform: scale(1.1);
             }
         }
     }

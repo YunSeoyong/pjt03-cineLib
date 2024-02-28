@@ -1,22 +1,40 @@
+import { useCallback, useEffect, useState } from "react";
+
+import axios from "../api/axios";
+import styled from "styled-components";
+
 import MovieItem from "./MovieItem.js";
 
-const MovieList = ({ dummyList, cateYear }) => {
-    const filterYearDummy =
-        cateYear === 'all' ?
-        dummyList
-        : dummyList.filter((it) => (new Date(it.year).getFullYear() === cateYear));
+const MovieList = ({
+    title,
+    id,
+    fetchUrl,
+}) => {
+    const [movies, setMovies] = useState([]);
+
+    const fetchMovies = useCallback (async () => {
+        const response = await axios.get(fetchUrl);
+        setMovies(response.data.results);
+    }, [fetchUrl]);
+    
+    useEffect(() => {
+        fetchMovies();
+    }, [fetchMovies])
 
     return (
-        <section id="movieList">
-            <div className="movieList_in">
+        <Movielist>
+            <MovieListUl>
                 <div className="movieBox">
-                    {filterYearDummy.map((it) => (
+                    {movies.map((it) => (
                         <MovieItem key={it.id} {...it} />
                     ))}
                 </div>
-            </div>
-        </section>
+            </MovieListUl>
+        </Movielist>
     );
 };
 
 export default MovieList;
+
+const Movielist = styled.section``;
+const MovieListUl = styled.ul``;

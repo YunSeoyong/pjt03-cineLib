@@ -34,11 +34,6 @@ const MovieRow = ({
         fetchMovies();
     }, [fetchMovies]);
 
-    useEffect(() => {
-        return () => {setMovies([])};
-    });
-    
-
     return (
         <MovieRowWrap>
             <h2 onClick={() => {navigate(`${path}`)}}>{title}</h2>

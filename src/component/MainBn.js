@@ -15,10 +15,6 @@ const MainBn = () => {
         fetchData();
     }, []);
 
-    useEffect(() => {
-        return () => {setMovie({})};
-    })
-
     const fetchData = async () => {
         const response = await axios.get(requests.fetchNowPlaying);
         const movieId = response.data.results[

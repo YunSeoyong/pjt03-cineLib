@@ -68,7 +68,7 @@ export default MenuToggle;
 const ButToggle = styled(motion.button)`
     position: absolute;
     top: 23px;
-    right: 0;
+    right: 0px;
     width: 40px;
     height: 40px;
     cursor: pointer;

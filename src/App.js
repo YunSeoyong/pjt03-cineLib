@@ -8,7 +8,8 @@ import Main from './page/Main.js';
 import styled from 'styled-components';
 import ListPage from './page/ListPage.js';
 import requests from './api/request.js';
-import DetailPage from './component/DetailModal.js';
+import DetailPage from './page/DetailPage.js';
+import SearchPage from './page/SearchPage.js';
 
 const Layout = () => {
     return (
@@ -63,6 +64,8 @@ function App() {
                                 }
                             />
                         ))}
+                        <Route path='/search' element={<SearchPage />} />
+                        <Route path='/detail/:movieId' element={<DetailPage />} />
                     </Route>
                 </Routes>
             </BrowserRouter>

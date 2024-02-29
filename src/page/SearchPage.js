@@ -1,15 +1,13 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import { useLocation, useNavigate } from "react-router";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router";
 
 import styled from "styled-components";
 import axios from "../api/axios";
-import requests from "../api/request";
 import MovieItem from "../component/MovieItem";
 import { useDebounce } from "../utillhooks/useDebounce.js"
 
 const SearchPage = () => {
     const [searchResult, setSearchResult] = useState([]);
-    const navigate = useNavigate();
     const useQuery = () => {
         return new URLSearchParams(useLocation().search);
     };

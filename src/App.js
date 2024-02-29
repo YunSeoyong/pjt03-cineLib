@@ -10,6 +10,7 @@ import ListPage from './page/ListPage.js';
 import requests from './api/request.js';
 import DetailPage from './page/DetailPage.js';
 import SearchPage from './page/SearchPage.js';
+import GenrePage from './page/GenrePage.js';
 
 const Layout = () => {
     return (
@@ -64,6 +65,7 @@ function App() {
                                 }
                             />
                         ))}
+                        <Route path='/genres/*' element={<GenrePage />} />
                         <Route path='/search' element={<SearchPage />} />
                         <Route path='/detail/:movieId' element={<DetailPage />} />
                     </Route>

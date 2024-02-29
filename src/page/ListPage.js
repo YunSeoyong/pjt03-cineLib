@@ -1,13 +1,12 @@
 // ListPage.js
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import styled from "styled-components";
 import MovieItem from "../component/MovieItem";
 
 import axios from "../api/axios";
-import requests from "../api/request";
 
-const ListPage = ({ title, fetchUrl }) => {
+const ListPage = ({ id, title, fetchUrl }) => {
     const [movies, setMovies] = useState([]);
     const [page, setPage] = useState(1);
     const loaderRef = useRef();

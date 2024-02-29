@@ -27,7 +27,7 @@ const DetailPage = ({
             setMovieInfo([]);
             setCast([]);
         }
-    }, [])
+    })
 
     return (
         <DetailPageWrap

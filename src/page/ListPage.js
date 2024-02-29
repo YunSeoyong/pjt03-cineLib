@@ -59,7 +59,7 @@ const ListPage = ({ id, title, fetchUrl }) => {
 
     useEffect(() => {
         return () => {setMovies([])};
-    }, []);
+    });
 
     return (
         <Listpage>

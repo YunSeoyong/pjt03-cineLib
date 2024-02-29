@@ -36,7 +36,7 @@ const MovieRow = ({
 
     useEffect(() => {
         return () => {setMovies([])};
-    }, []);
+    });
     
 
     return (

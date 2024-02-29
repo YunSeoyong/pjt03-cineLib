@@ -68,7 +68,7 @@ const ListPage = ({ id, title, fetchUrl }) => {
                 </div>
                 <div
                     id="observer"
-                    style={{ width: "100%", height: "10px", textAlign: "center" }}
+                    style={{ width: "100%", lineHeight: "50px", textAlign: "center" }}
                     ref={loaderRef}
                 >
                     Loading...

@@ -21,7 +21,6 @@ const DetailPage = ({
         setMovieInfo(responseInfo.data);
         setCast(responseCast.data.cast);
     };
-    console.log(movieInfo);
 
     return (
         <DetailPageWrap

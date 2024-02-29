@@ -1,7 +1,10 @@
 // App.js
 import { useRef, useState } from 'react';
 import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
+import app from './firebase.js';
+
 import './App.css';
+
 import Header from './common/Header.js';
 import Footer from './common/Footer.js';
 import Main from './page/Main.js';
@@ -11,6 +14,8 @@ import requests from './api/request.js';
 import DetailPage from './page/DetailPage.js';
 import SearchPage from './page/SearchPage.js';
 import GenrePage from './page/GenrePage.js';
+import LogInPage from './page/LogInPage.js';
+
 
 const Layout = () => {
     return (
@@ -52,7 +57,8 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Layout />}>
-                        <Route index element={<Main />} />
+                        <Route index element={<LogInPage />} />
+                        <Route path="/main" element={<Main />} />
                         {LPList && LPList.map((it) => (
                             <Route
                                 key={it.code} 

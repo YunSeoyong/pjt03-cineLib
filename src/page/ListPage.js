@@ -14,7 +14,7 @@ const ListPage = ({ id, title, fetchUrl }) => {
     const fetchData = async () => {
         try {
             const apiKey = "1c97eb8d751c4ff940394548eb1e3d56";
-            const endpoint = `http://api.themoviedb.org/3/${fetchUrl}`;
+            const endpoint = `https://api.themoviedb.org/3/${fetchUrl}`;
             const response = await axios.get(endpoint, {
                 params: { api_key: apiKey, language: "ko-KR", page },
             });

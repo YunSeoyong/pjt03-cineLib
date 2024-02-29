@@ -8,25 +8,25 @@ const Footer = () => {
                 <div className="ft_bottom">
                     <div className="ft_menu">
                         <ul>
-                            <li><a href="">고객센터</a></li>
-                            <li><a href="">이용약관</a></li>
-                            <li><a href="">쿠키설정</a></li>
-                            <li><a href="">법적고지</a></li>
-                            <li><a href="">개인정보처리방침</a></li>
+                            <li>고객센터</li>
+                            <li>이용약관</li>
+                            <li>쿠키설정</li>
+                            <li>법적고지</li>
+                            <li>개인정보처리방침</li>
                         </ul>
                     </div>
                     <div className="ft_info">
-                        <p>서울특별시 송파구 올림픽로 300 롯데월드타워 102층 0506호</p>
+                        <p>서울특별시 00구 00로 000 000타워 000층 000호</p>
                         <p>
-                            <span>통신판매업신고번호 : 제1997-태양계우라노스-0506</span>
+                            <span>통신판매업신고번호 : 제1997-frontend-0506</span>
                             <span>사업자등록번호 : 123-45-67890</span>
                         </p>
                         <p>
                             <span>대표 : 윤서용</span>
-                            <span>seoy2515@gmail.com</span>
+                            <span><a href="mailto:seoy2515@gmail.com">seoy2515@gmail.com</a></span>
                             <span>010-4294-2415</span>
                         </p>
-                        <p>&copy; 2023. YONG. All rights reserved.</p>
+                        <p>&copy; 2023. SEOYONG. All rights reserved.</p>
                     </div>
                 </div>
             </div>
@@ -60,12 +60,14 @@ const FooterWrap = styled.footer`
                     display: flex;
 
                     li{
-                        font-size: 12px;
+                        font-size: var(--font-con);
                         font-weight: 500;
                         margin-right: 2vw;
+                        transition: 0.3s;
+                        cursor: pointer;
                     }
                     li:hover{
-                        opacity: 0.7;
+                        color: var(--main-color);
                     }
                     li:last-child{
                         margin-right: 0;
@@ -73,11 +75,18 @@ const FooterWrap = styled.footer`
                 }
             }
             .ft_info{
-                font-size: 12px;
+                font-size: 2.4vw;
+                line-height: 1.8em;
                 font-weight: 300;
 
                 span{
                     margin-right: 10px;
+                }
+                a{
+                    transition: 0.3s;
+                }
+                a:hover{
+                    color: var(--main-color);
                 }
             }
         }
@@ -103,16 +112,12 @@ const FooterWrap = styled.footer`
                     }
                 }
                 .ft_info{
-                    font-size: 13px;
-                    line-height: 2em;
-                    span{
-                        margin-right: 20px;
-                    }
+                    font-size: 15px;
                 }
             }
         }
     }
-    @media screen and (min-width:1280px) {
+    @media screen and (min-width:1024px) {
         padding: 80px 0;
         .footer_in{
             .ft_logo{
@@ -126,9 +131,6 @@ const FooterWrap = styled.footer`
                     li:last-child{
                         margin-right: 0;
                     }
-                }
-                .ft_info{
-                    font-size: 14px;
                 }
             }
         }

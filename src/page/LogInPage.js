@@ -35,8 +35,10 @@ const LogInPage = () => {
 export default LogInPage;
 
 const LogIn = styled.section`
+    box-sizing: border-box;
     position: relative;
     height: 100dvh;
+    padding: 0 30px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

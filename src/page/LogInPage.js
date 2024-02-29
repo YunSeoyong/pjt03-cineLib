@@ -47,7 +47,7 @@ const LogIn = styled.section`
         position: absolute;
         top: 40%;
         left: 50%;
-        width: 100%;
+        width: 100%;fir
         font-size: var(--font-md);
         line-height: 1.5em;
         font-weight: 700;

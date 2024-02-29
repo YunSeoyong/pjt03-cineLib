@@ -1,28 +1,20 @@
 import { useRef, useState } from "react";
 import styled from "styled-components";
 import { motion, useCycle } from "framer-motion";
-import { useDimensions } from "../utillhooks/useDimensions.tsx"
 
-import SearchModal from "./SearchModal.js";
 import Navigation from "./Navigation.js";
 import MenuToggle from "./MenuToggle.js";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
 
 
 const Header = () => {
-    const [isSearch, setIsSearch] = useState(false);
     const [isMenu, toggleMenu] = useCycle(false, true);
+    const [search, setSearch] = useState('');
+    const [isSearchModal, setIsSearchModal] = useState(false);
     const navRef = useRef();
-    const { height } = useDimensions(navRef);
     const navigate = useNavigate();
-
-    const showSearch = () => {
-        setIsSearch(true);
-    }
-    const closeSearch = (i) => {
-        setIsSearch(false);
-    }
+    const { pathname } = useLocation();
 
     const sidebar = {
         open: () => ({
@@ -43,22 +35,36 @@ const Header = () => {
         }
     };
 
+    const handleSearchMo = () => {
+        setIsSearchModal((prev) => !prev);
+    };
+
+    const onChangeSearch = (e) => {
+        setSearch(e.target.value);
+        navigate(`/search?q=${e.target.value}`)
+    };
+
     return (
         <HeaderWrap id="header">
             <div className="hd_in">
-                <h1 className="h_logo" onClick={() => {navigate('/')}}>CINE LIB</h1>
+                <h1 className="h_logo" onClick={() => { navigate('/') }}>CINE LIB</h1>
                 <div className="h_utill">
-                    <ul>
-                        <li className="h_search">
-                            <p onClick={showSearch}>검색</p>
-                            {/* <div className={isSearch ? "h_search_modal show" : "h_search_modal"}>
-                                {dummyList.map((i) => (
-                                    <SearchModal key={i.id} closeSearch={closeSearch} {...i} />
-                                ))}
-                            </div> */}
-                        </li>
-                        <li className="h_signIn"><p>로그인</p></li>
-                    </ul>
+                    <Search className={isSearchModal ? 'active' : ''}>
+                        <input 
+                            type="text"
+                            value={search}
+                            placeholder="검색어를 입력해주세요."
+                            onChange={onChangeSearch}
+                        />
+                        {search.length && search.length > 0 ?
+                            <p className="btnCancel"
+                                onClick={() => {setSearch('')}}
+                            ><span className="hide">지우기</span></p>
+                            : null
+                        }
+                    </Search>
+                    <div className="h_search_mo" onClick={handleSearchMo}>검색</div>
+                    <div className="h_signIn">SignOut</div>
                     <Nav
                         ref={navRef}
                         initial={false}
@@ -105,40 +111,26 @@ const HeaderWrap = styled.header`
 
         .h_utill{
             margin-top: 27px;
-            padding-right: 58px;
+            padding-right: 60px;
+            display: flex;
+            .h_search_mo{
+                width: 24px;
+                height: 24px;
+                text-indent: -99999px;
+                cursor: pointer;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: 100% auto;
+                background-image: url('/assets/icon_search.svg');
+            }
+            .h_signIn{
+                margin-left: 18px;
+                margin-top: 2px;
+                cursor: pointer;
+                transition: 0.3s;
 
-            & > ul{
-                display: flex;
-
-                & > li{
-                    margin-left: 18px;
-                    cursor: pointer;
-
-                    & > p{
-                        transition: 0.2s;
-                    }
-
-                    &:hover > p{
-                        color: var(--main-color);
-                    }
-                }
-                .h_search > p, .h_menu > p{
-                    width: 24px;
-                    height: 24px;
-                    text-indent: -99999px;
-                    cursor: pointer;
-                    background-position: center;
-                    background-repeat: no-repeat;
-                    background-size: 100% auto;
-                }
-                .h_search > p{
-                    background-image: url('/assets/icon_search.svg');
-                }
-                .h_search:hover > p{
-                    background-image: url('/assets/icon_search_y.svg');
-                }
-                .h_signIn{
-                    margin-top: 2px;
+                &:hover{
+                    color: var(--main-color);
                 }
             }
         }
@@ -146,10 +138,9 @@ const HeaderWrap = styled.header`
     @media screen and (min-width:768px) {
         .hd_in{
             margin: 0 20px;
-
-            .h_utill > li{
-                margin-left: 24px;
-            }
+        }
+        .h_search_mo{
+            display: none;
         }
     }
     @media screen and (min-width:1024px) {
@@ -207,6 +198,89 @@ const Nav = styled(motion.nav)`
     @media screen and (min-width:1480px){
         ul{
             left: 30px;
+        }
+    }
+`;
+
+const Search = styled.div`
+    box-sizing: border-box;
+    position: fixed;
+    top: -80px;
+    left: 0;
+    right: 0;
+    padding: 20px 30px;
+    background-color: rgba(22, 21, 20, 0.8);
+    transition: 0.5s;
+    transform: scaleY(0);
+
+    input {
+        box-sizing: border-box;
+        width: 100%;
+        height: 8vw;
+        padding: 0 70px 0 20px;
+        border-radius: 50px;
+        border: 0;
+        outline: 0;
+        font-size: var(--font-con);
+    }
+    input:focus {
+        outline: 1px solid var(--main-color);
+        border: 0;
+    }
+    input::placeholder{
+        color: #aaa;
+    }
+    .btnCancel{
+        position: absolute;
+        top: 50%;
+        right: 40px;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(0, 0, 0, 0.8);
+        cursor: pointer;
+        transition: 0.3s;
+
+        &::after, &::before{
+            content: "";
+            position: absolute;
+            top: 6px;
+            left: 12px;
+            display: block;
+            width: 1px;
+            height: 14px;
+            background-color: #fff;
+        }
+        &::after {
+            transform: rotate(45deg);
+        }
+        &::before {
+            transform: rotate(-45deg);
+        }
+        &:hover {
+            background-color: var(--dark-color);
+        }
+    }
+
+    &.active{
+        top: 80px;
+        transform: scaleY(1);
+    }
+    @media screen and (min-width:768px) {
+        position: absolute;
+        top: 22px;
+        right: 135px;
+        left: auto;
+        background-color: transparent;
+        padding: 0;
+        width: 260px;
+        transform: scaleY(1);
+
+        input{
+            height: 36px;
+            font-size: 14px;
+            padding: 0 40px 0 20px;
         }
     }
 `;

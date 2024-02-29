@@ -5,9 +5,11 @@ import axios from "../api/axios.js";
 import requests from "../api/request.js";
 
 import { truncate } from "../utillhooks/truncate.js"
+import { useNavigate } from "react-router";
 
 const MainBn = () => {
     const [movie, setMovie] = useState({});
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetchData();
@@ -30,6 +32,7 @@ const MainBn = () => {
             style={{
                 backgroundImage: movie.backdrop_path ? `url("https://image.tmdb.org/t/p/original${movie.backdrop_path}")` : "none"
             }}
+            onClick={() => {navigate(`/detail/${movie.id}`)}}
         >
             <BnContent>
                 <h2>{movie.title || movie.original_title || movie.name}</h2>
@@ -50,6 +53,7 @@ const MainBnWrap = styled.div`
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center top;
+    cursor: pointer;
     @media screen and (min-width:768px){
         margin-bottom: 80px;
     }
@@ -71,6 +75,7 @@ const BnContent = styled.div`
     }
     .overview{
         font-size: var(--font-con);
+        line-height: 1.5em;
     }
     @media screen and (min-width:768px){
         bottom: 20%;

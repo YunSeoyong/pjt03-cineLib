@@ -10,13 +10,16 @@ import axios from "../api/axios";
 import styled from "styled-components";
 
 import { truncate } from "../utillhooks/truncate";
+import { useNavigate } from "react-router";
 
 const MovieRow = ({
     title,
     id,
     fetchUrl,
+    path,
 }) => {
     const [movies, setMovies] = useState([]);
+    const navigate = useNavigate();
 
     const fetchMovies = useCallback (async () => {
         try{
@@ -34,7 +37,7 @@ const MovieRow = ({
 
     return (
         <MovieRowWrap>
-            <h2>{title}</h2>
+            <h2 onClick={() => {navigate(`${path}`)}}>{title}</h2>
             <Swiper
                 className="slideWrap"
                 spaceBetween={14}
@@ -58,10 +61,11 @@ const MovieRow = ({
             >
                 {
                     movies && movies.map((it) => (
-                        <SwiperSlide key={it.id} className="slides">
+                        <SwiperSlide key={it.id} className="slides" onClick={() => {navigate(`/detail/${it.id}`)}}>
                             <p className="poster">
                                 <img 
                                     src={`https://image.tmdb.org/t/p/original/${it.poster_path}`}
+                                    alt={it.title || it.original_title}
                                 />
                             </p>
                             <p className="title">

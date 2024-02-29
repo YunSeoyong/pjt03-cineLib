@@ -2,13 +2,14 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { truncate } from "../utillhooks/truncate";
+import { useNavigate } from "react-router";
 
 const MovieItem = ({ id, title, original_title, poster_path, release_date, vote_average, vote_count }) => {
-
+    const navigate = useNavigate();
     return (
-        <MovieLi key={id}>
+        <MovieLi key={id} onClick={() => {navigate(`/detail/${id}`)}}>
             <div className="item_photo">
-                <img src={`https://image.tmdb.org/t/p/original/${poster_path}`} />
+                <img src={`https://image.tmdb.org/t/p/original/${poster_path}`} alt={title || original_title} />
             </div>
             <div className="item_text">
                 <h4>{title || original_title}</h4>

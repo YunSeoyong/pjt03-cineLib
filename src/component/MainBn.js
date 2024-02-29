@@ -13,6 +13,8 @@ const MainBn = () => {
 
     useEffect(() => {
         fetchData();
+
+        return () => {setMovie({})};
     }, []);
 
     const fetchData = async () => {

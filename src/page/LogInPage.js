@@ -7,6 +7,8 @@ const LogInPage = () => {
     const [movie, setMovie] = useState({});
     useEffect(() => {
         fetchData();
+
+        return () => {setMovie({})};
     }, []);
 
     const fetchData = async () => {

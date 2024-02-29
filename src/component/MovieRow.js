@@ -33,6 +33,10 @@ const MovieRow = ({
     useEffect(() => {
         fetchMovies();
     }, [fetchMovies]);
+
+    useEffect(() => {
+        return () => {setMovies([])};
+    }, []);
     
 
     return (

@@ -57,6 +57,10 @@ const ListPage = ({ id, title, fetchUrl }) => {
         };
     }, [page]);
 
+    useEffect(() => {
+        return () => {setMovies([])};
+    }, []);
+
     return (
         <Listpage>
             <div className="listpage_in">

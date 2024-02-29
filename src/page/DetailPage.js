@@ -22,6 +22,13 @@ const DetailPage = ({
         setCast(responseCast.data.cast);
     };
 
+    useEffect(() => {
+        return () => {
+            setMovieInfo([]);
+            setCast([]);
+        }
+    }, [])
+
     return (
         <DetailPageWrap
             style={{
